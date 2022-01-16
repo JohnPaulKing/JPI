@@ -1,12 +1,9 @@
 package BasicGameComponents;
 
 /**
-* Standard suits in a deck
+ * Suit will always be implemented by an ENUM
  */
-
-public enum Suit {
-    HEARTS,
-    CLUBS,
-    DIAMONDS,
-    SPADES
+public interface Suit {
+    int getNumber();
+    String toString();
 }

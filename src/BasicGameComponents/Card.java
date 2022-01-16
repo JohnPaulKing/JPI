@@ -2,6 +2,7 @@ package BasicGameComponents;
 
 import BasicGameComponents.Suit;
 import DefaultGameComponents.DefaultValueDeterminer;
+import DefaultGameComponents.StandardRank;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -65,7 +66,7 @@ public class Card {
      * @param suit the card's suit
      * @param rank the card's rank
      */
-    Card(Suit suit, Rank rank) {
+    public Card(Suit suit, Rank rank) {
         this(suit,rank, new DefaultValueDeterminer() );
     }
 
@@ -77,7 +78,7 @@ public class Card {
      * @param rank
      * @param valueRule
      */
-    Card(Suit suit, Rank rank, ValueRule valueRule) {
+    public Card(Suit suit, Rank rank, ValueRule valueRule) {
         this.suit = suit;
         this.rank = rank;
         this.owner = null;  //no owner

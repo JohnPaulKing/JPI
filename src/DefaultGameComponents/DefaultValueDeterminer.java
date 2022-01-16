@@ -13,4 +13,5 @@ public class DefaultValueDeterminer implements ValueRule{
     public int determineValue(Suit suit, Rank rank) {
         return rank.getNumber();
     }
+
 }
