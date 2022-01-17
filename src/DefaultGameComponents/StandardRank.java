@@ -14,9 +14,9 @@ public enum StandardRank implements Rank {
     EIGHT (8,"8"),
     NINE (9,"9"),
     TEN (10,"10"),
-    JACK (11, "JACK"),
-    QUEEN (12, "QUEEN"),
-    KING (13, "KING"),
+    JACK (11, "J"),
+    QUEEN (12, "Q"),
+    KING (13, "K"),
     JOKER(14, "JOKER");
 
     String str;

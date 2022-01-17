@@ -1,7 +1,6 @@
 package BasicGameComponents;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -22,7 +21,16 @@ public abstract class Deck extends ArrayList<Card> {
      * The rule that will determine this card's value
      * This should be used when initializing cards
      */
-    public ValueRule valueRule;
+    protected ValueRule valueRule;
+
+    /**
+     * Repreesents the index of the "top" of the deck
+     * which is actually the bottom. in order to not shrink
+     * the size of the deck when we remove a card, this serves
+     * as an alternative to "size" to see the number of instantiated cards
+     */
+    int top;
+
 
     /**
      * This function initializes the deck
@@ -34,7 +42,7 @@ public abstract class Deck extends ArrayList<Card> {
      * but in special cases, a developer may create their own reinitialze
      * method in the concrete class
      */
-    public abstract void initDeck();
+    public abstract void init();
 
 
     /**
@@ -52,10 +60,12 @@ public abstract class Deck extends ArrayList<Card> {
         //create a shallow copy of this list
         //that means each reference is copied, and cards are not
         //destroyed or remade
-        ArrayList<Card> copy = (ArrayList<Card>) super.clone();
-        //now clear cards
-        this.clear();
-        int size = this.size();
+        ArrayList<Card> copy = (ArrayList<Card>) this.clone();
+        //now clear cards, without changing the size
+        for (int i = 0; i < this.size(); i++) {
+            this.set(i,null);
+        }
+        int size = copy.size();
 
         for (Card card : copy) {
             //generate a number from 0 to size of deck-1, inclusive
@@ -64,16 +74,39 @@ public abstract class Deck extends ArrayList<Card> {
             while (this.get(randNum % size) != null) {
                 randNum = (randNum == size()-1 ) ? 0 : randNum+1;
             }
+            this.set(randNum,card);
         }
     }
 
     /**
-     * This simulates "cutting" the deck
-     * and randomly picking a card. This may vary greatly
-     * depending on the game
-     * @return the card cut
+     * Takes a card from the bottom of deck,
+     * removes it, and returns it to caller
+     * @return the card "dealt"
      */
-    public abstract Card cut();
+    public Card takeFromTop() {
+        Card cardDrawn = this.get(top);
+        this.set(top,null);
+        top--;
+        return cardDrawn;
+    }
 
+    /**
+     * Adds a card to the deck.
+     * If a deck slot is empty, it will add to that
+     * before adding to the end of the internal arraylist
+     * @param card the card to be added
+     * @return true if succesffuly added
+     */
+    @Override
+    public boolean add(Card card) {
+        //if there are empty slots still
+        if (top < this.size()) {
+            this.set(top, card);
+            top++;
+            return true;
+        }
+        top++;
+        return super.add(card);
+    }
 
 }

@@ -19,6 +19,6 @@ public interface Dealer {
      * @param list list of hands to collect cards from
      * @param deck deck to return cards to
      */
-    void collectCards(PlayerList list, Deck deck);
+    void collectCards(List<Hand> list, Deck deck);
 
 }

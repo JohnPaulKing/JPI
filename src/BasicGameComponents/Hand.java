@@ -20,7 +20,7 @@ public class Hand extends ArrayList<Card> {
      * @param card card to be added
      * @return whether the card was successfully added
      */
-    public boolean addToHand(Card card) {
+    public boolean addCard(Card card) {
         if (this.size() + 1 > capacity) {
             return false;
         } else {

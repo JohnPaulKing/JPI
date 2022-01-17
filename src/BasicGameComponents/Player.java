@@ -9,7 +9,12 @@ public class Player {
     /**
      * The player's hand
      */
-    Hand hand = new Hand();
+    public Hand hand = new Hand();
+
+    /**
+     * Whether the player is currently the dealer
+     */
+    boolean isDealer = false;
 
     void increaseScore(int points) {
         score += points;

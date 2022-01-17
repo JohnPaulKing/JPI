@@ -15,7 +15,7 @@ public class StandardDeck extends Deck {
      * Standard constructor with args
      * @param valueRule
      */
-    StandardDeck(ValueRule valueRule, boolean includeJokers) {
+    public StandardDeck(ValueRule valueRule, boolean includeJokers) {
         super(valueRule);
         this.includeJokers = includeJokers;
     }
@@ -40,11 +40,13 @@ public class StandardDeck extends Deck {
      * Initializes standard 52 cards
      */
     @Override
-    public void initDeck() {
+    public void init() {
         //go through all the suits, and all the ranks
         //except special ranks like NONE or JOKER
         for(StandardSuit suit : StandardSuit.values()) {
-            if (suit == StandardSuit.NONE) {
+            if (suit == StandardSuit.NONE
+                || suit == StandardSuit.BLACK
+                || suit == StandardSuit.RED) {
                 continue;
             }
             for (StandardRank rank : StandardRank.values()) {
@@ -65,8 +67,7 @@ public class StandardDeck extends Deck {
      * Returns the top card of the deck
      * @return
      */
-    @Override
     public Card cut() {
-        return this.get(0);
+        return this.takeFromTop();
     }
 }
