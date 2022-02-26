@@ -3,6 +3,8 @@ package BasicGameComponents;
 import BasicGameComponents.Suit;
 import DefaultGameComponents.DefaultValueDeterminer;
 import DefaultGameComponents.StandardRank;
+import GameBoard.BoardObject;
+import GameBoard.Drawable;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +13,7 @@ import java.util.Set;
 Basic card type
  */
 
-public class Card {
+public class Card implements Drawable {
 
     /**
      * The suit of a certain card
@@ -139,4 +141,10 @@ public class Card {
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
+
+    @Override
+    public void draw(){
+        //put card
+    }
+
 }
